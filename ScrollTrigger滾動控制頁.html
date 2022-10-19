@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .section3{
+            position: relative;
+            margin: 0px 0px;
+            display: flex;
+            flex-wrap: wrap;
+            height: 1000px;
+            overflow: hidden;
+        }
+        .gate{
+            position: absolute;
+            top:0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            width: 50%;
+            height: 100%;
+            font-size: 40px;
+            font-weight: bold;
+            color: black;
+        }
+        .gate-right{
+            right: 0;
+        }
+        .gate-left-1, .gate-right-1{
+            background-color: aqua;
+        }
+        .gate-left-2, .gate-right-2{
+            background-color: blanchedalmond;
+        }
+        .gate-left-3, .gate-right-3{
+            background-color: coral;
+        }
+        .z-0 {
+            z-index: 0;
+        }
+        .z-10 {
+            z-index: 10;
+        }
+        .z-20 {
+            z-index: 20;
+        }
+
+
+        .section4{
+            position: relative;
+            margin: 0px 0px;
+            display: flex;
+            flex-wrap: wrap;
+            height: 1000px;
+            overflow: hidden;
+        }
+
+        .gate2{
+            position: absolute;
+            right:0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            width: 100%;
+            height: 50%;
+            font-size: 40px;
+            font-weight: bold;
+            color: black;
+        }
+        .gate2-right{
+            bottom: 0;
+        }
+        .gate2-left{
+            top:0;
+        }
+        .gate2-left-1, .gate2-right-1{
+            background-color: aqua;
+        }
+        .gate2-left-2, .gate2-right-2{
+            background-color: blanchedalmond;
+        }
+        .gate2-left-3, .gate2-right-3{
+            background-color: coral;
+        }
+    </style>
+</head>
+<body>
+    <!-- 畫面主要分為gate-left左邊與gate-right右邊元素，我們透過操作兩邊元素達到視差動畫效果 -->
+    <section class="section3">
+        <div class="gate gate-left gate-left-1 z-20">
+            <h2>第一周</h2>
+        </div>
+        <div class="gate gate-right gate-right-1 z-20">
+            <h2>WEEK 1</h2>
+        </div>
+        <div class="gate gate-left gate-left-2 z-10">
+            <h2>第二周</h2>
+        </div>
+        <div class="gate gate-right gate-right-2 z-10">
+            <h2>WEEK 2</h2>
+        </div>
+        <div class="gate gate-left gate-left-3 z-0">
+            <h2>第三周</h2>
+        </div>
+        <div class="gate gate-right gate-right-3 z-0">
+            <h2>WEEK 3</h2>
+        </div>
+    </section>
+    <!-- 自我練習 -->
+    <section class="section4">
+        <div class="gate2 gate2-left gate2-left-1 z-20">
+            <h2>第一周</h2>
+        </div>
+        <div class="gate2 gate2-right gate2-right-1 z-20">
+            <h2>WEEK 1</h2>
+        </div>
+        <div class="gate2 gate2-left gate2-left-2 z-10">
+            <h2>第二周</h2>
+        </div>
+        <div class="gate2 gate2-right gate2-right-2 z-10">
+            <h2>WEEK 2</h2>
+        </div>
+        <div class="gate2 gate2-left gate2-left-3 z-0">
+            <h2>第三周</h2>
+        </div>
+        <div class="gate2 gate2-right gate2-right-3 z-0">
+            <h2>WEEK 3</h2>
+        </div>
+    </section>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/TextPlugin.min.js"></script>
+    <script>
+        const srollTL = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".section3", 
+            pin: true, //重要！ pin需設為true
+            markers: true,
+            scrub: true,
+        },
+        });
+        srollTL.to(".gate-left-1", { yPercent: "-100" });
+        srollTL.to(".gate-right-1", { yPercent: "100" }, "<");
+        srollTL.to(".gate-left-2", { yPercent: "-100" });
+        srollTL.to(".gate-right-2", { yPercent: "100" }, "<");
+
+        const srollTL2 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".section4", 
+            pin: true, //重要！ pin需設為true
+            markers: true,
+            scrub: true,
+        },
+        });
+        srollTL2.to(".gate2-left-1", { xPercent: "-100" });
+        srollTL2.to(".gate2-right-1", { xPercent: "100" }, "<");
+        srollTL2.to(".gate2-left-2", { xPercent: "-100" });
+        srollTL2.to(".gate2-right-2", { xPercent: "100" }, "<");
+    </script>
+</body>
+</html>
