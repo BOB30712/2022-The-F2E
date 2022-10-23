@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP ScrollTrigger－同時觸發多個元素動畫</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <style>
+        *{
+            background-color: black;
+            color: white;
+            font-family: 'DotGothic16', sans-serif;
+            font-size: 100px;
+            outline: 3px solid white;
+        }
+        .loop{
+            overflow: hidden;
+        }
+        .box2-3{
+            position: relative;
+        }
+        .box2-3::after{
+            content: "";
+            position:absolute;
+            top: 0;
+            left: 100%;
+            height: 0px;
+            width: 0px;
+            background-color:transparent;
+            border-width:0 50px 100px 0px;
+            border-style:solid;
+            border-color:transparent transparent coral;
+        }
+        .box2-4{
+            margin-left: 80px;
+            position: relative;
+        }
+        .box2-4::after{
+            position: absolute;
+            content: "";
+            top:0;
+            right:100%;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 100px 0px 0 50px;
+            border-color: red transparent transparent transparent;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="gsap-to">gsap.to( )練習<span class="cursor">_</span></h1>
+    <div class="box1">
+        <p>gsap.to( )練習操作 x 軸與 y 軸</p>
+    </div>
+    <div class="loop">
+        <p style="display: inline-block;white-space: nowrap;color: transparent;-webkit-text-stroke: 1px white;"> THE F2E THE F2E THE F2E THE F2E  THE F2E THE F2E THE F2E THE F2E THE F2E</p>
+    </div>
+    <div class="box2" style="height: 200px;background-color: white;display: flex;align-items: flex-end;">
+        <div class="box2-1" style="width: 50px;height: 50px;outline: 0px;"></div>
+        <div class="box2-1" style="width: 50px;height: 50px;background-color:aqua;outline: 0px;"></div>
+        <div class="box2-2" style="width: 50px;height: 100px;background-color:blueviolet;outline: 0px;"></div>
+        <div class="box2-3" style="width: 200px;height: 100px;background-color:coral;outline: 0px;"></div>
+        <div class="box2-4" style="width: 200px;height: 100px;background-color:red;outline: 0px;"></div>
+    </div>
+    <div class="box3" style="height: 200px;background-color: white;margin-top: 20px;">
+        <div class="box3-1" style="width: 50px;height: 50px;background-color: black;"></div>
+        <div class="box3-2" style="width: 50px;height: 50px;background-color: black;"></div>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/TextPlugin.min.js"></script>
+    <script>
+        gsap.to('.cursor',{opacity:0,duration:1,repeat:-1})
+        //yoyo:使每次repeat反方向開始，避免動作重複時產生不連續感覺
+        gsap.fromTo('.gsap-to',{color:'red'},{color:'blue',duration:4,repeat:-1,repeatDelay:3,yoyo:true})
+        gsap.to('.box1',{y:50,duration:3})
+        gsap.to('.box1',{y:0,duration:3,delay:3})
+        gsap.to('.loop>p',{xPercent: "-22.5",duration:3,repeat:-1,ease:'none'})
+        gsap.utils.toArray(".box2-1").forEach((element)=>{
+            const timeline = gsap.timeline({repeat:-1,yoyo:true})
+            let random=-Math.floor(Math.random() * 200)//
+            //timeline.to(element,{x:Math.floor(Math.random() * 200),duration:1})
+            timeline.to(element,{y:random,duration:1})
+        })
+        gsap.to('.box2-2',{height:30,duration:2,repeat:-1,yoyo:true})
+        gsap.to('.box2-3',{x:30,duration:2,repeat:-1,yoyo:true})
+        gsap.to('.box3-1',{scrollTrigger:'.box3-1',x:300})
+        const box3=gsap.timeline({
+            scrollTrigger:{
+                trigger:'.box3-2',
+                markers:true,
+                start:'top 30%',
+                end:'top 10%',
+                scrub:true
+            }
+        })
+        box3.to('.box3-2',{x:'200%',rotation: 360})
+    </script>
+</body>
+</html>

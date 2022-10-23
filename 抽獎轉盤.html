@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+    *{
+        outline: 1px solid black;
+    }
+    .pie{
+        width: 300px;
+        position: relative;
+        height: 300px;
+        border-radius: 50%;
+        background: conic-gradient(red 45deg 90deg, orange 90deg 180deg,red 180deg 270deg, orange 270deg 360deg);
+    }
+    .pie> .one{
+        font-size: 30px;
+        font-weight: bold;
+        position: absolute;
+        top:20%;
+        right: 20%;
+        transform: rotate(45deg);
+    }
+    .pie> .two{
+        font-size: 30px;
+        font-weight: bold;
+        position: absolute;
+        top:70%;
+        right: 20%;
+        transform: rotate(135deg);
+    }
+    .pie> .three{
+        font-size: 30px;
+        font-weight: bold;
+        position: absolute;
+        top:70%;
+        left: 20%;
+        transform: rotate(225deg);
+    }
+    .pie> .four{
+        font-size: 30px;
+        font-weight: bold;
+        position: absolute;
+        top:20%;
+        left: 20%;
+        transform: rotate(315deg);
+    }
+    .arrow{
+        position: absolute;
+        top:140px;
+        left: 280px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 20px 40px 20px 0;
+        border-color: transparent #007bff transparent transparent;
+    }
+</style>
+</head>
+<body>
+    <div class="pie">
+        <div class="one">一獎</div>
+        <div class="two">二獎</div>
+        <div class="three">三號</div>
+        <div class="four">四號</div>
+    </div>
+    <div class="arrow"></div>
+    <button class="button">旋轉</button>
+    <div class="Congrats" style="position:absolute;top:100px;left: 0px;z-index: -20;;width: 100%;text-align: center;background-color: chartreuse;font-size: 40px;font-weight: bold;opacity: 0;">
+        恭喜<br>獲得<span class="Gift"></span>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/TextPlugin.min.js"></script>
+    <script>
+        const button1=document.querySelector('.button');
+        button1.addEventListener('click', function () {
+            const randomarry=[30,-75,200,140]
+            let random=Math.floor(Math.random() * 2000);
+            let final=Math.floor(Math.random() *4);
+            //1:30,2:-75,3:200,4:140
+            gsap.to('.pie',{rotation:3600+randomarry[final],duration:10});
+            gsap.to('.Congrats',{opacity:1,duration:1,delay:11})
+            console.log(final+1);
+            document.querySelector('.Gift').textContent=`${final+1}`
+        });
+    </script>
+</body>
+</html>

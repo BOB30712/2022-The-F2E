@@ -8,26 +8,41 @@
 </head>
 <style>
     .box2{
-        margin: 500px 0px;
         width: 200px;
         height: 200px;
         border:1px solid black;
     }
 </style>
 <body>
-    <div class="box2 ">2</div>
+    <div>
+        <div class="box2 ">2</div>
+        <p>
+            <span class="typing1"></span>
+            <span class="cursor">_</span>
+        </p>
+    </div>
+
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/TextPlugin.min.js"></script>
     <script>
+        gsap.to(".typing1",{
+            text:"這是第一段",
+            duration:1.5,
+            ScrollTrigger:{
+                trigger:'.typing1',
+                toggleActions:'play pause resume reset'
+            }
+        })
+        gsap.to('.cursor',{opacity:0,duration:0.5,repeat:-1})
         const box2 = document.querySelector(".box2")
         ScrollTrigger.create({
             //以box2作為觸發時機
             trigger: box2,
             markers: true,
-            start: 'top 35%', // 決定動畫開始點的位置
-            end: 'top 35%', // 決定動畫結束點的位置
+            start: 'top 0%', // 決定動畫開始點的位置
+            end: 'top 0%', // 決定動畫結束點的位置
             //向下滾動進入start點時觸發callback
             onEnter: function () {
             animated(box2);
