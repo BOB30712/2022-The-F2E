@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">地名</th>
+            <th scope="col">位置</th>
+            <th scope="col">目前車輛數量</th>
+            <th scope="col">總停車格</th>
+            </tr>
+        </thead>
+        <tbody id="header">
+        </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center" id="page">
+            </ul>
+        </nav>
+    </div>
+
+    <script>
+        let Datanum=0;
+        //「桃園公共自行車即時服務資料」API讀取
+        fetch('https://data.tycg.gov.tw/api/v1/rest/datastore/a1b4714b-3b75-4ff8-a8f2-cc377e4eaa0f?format=json')
+        .then((response) => {
+            return response.json();
+        })
+        .then(function (myJson) {
+            console.log(myJson); //在這裡才能在 console 看到整個資料
+            console.log(myJson.result.records);
+            //取得當前頁數
+            /*
+            page=1--->0~9
+            page=2--->10~19
+            page=3--->20~29
+            */
+            let CurrentURL = new URL(window.location.href);
+            console.log('目前頁數',CurrentURL.searchParams.get('page'))
+            //
+            str=''
+            myJson.result.records.forEach(function(item,index){
+                Datanum++;
+                if(index>=(CurrentURL.searchParams.get('page')-1)*10&&
+                index<=CurrentURL.searchParams.get('page')*10-1){
+                    str=str+`<tr>
+                            <th scope="row">${index}</th>
+                            <td>${item.sna}</td>
+                            <td>${item.ar}</td>
+                            <td>${item.sbi}</td>
+                            <td>${item.tot}</td>
+                        </tr>`
+                }
+            })
+            let element = document.getElementById("header");
+            element.innerHTML = str;
+
+            //
+            console.log('總資料數量',Datanum)
+            let Pagestr='<li class="page-item" id="Previous"><button class="page-link">Previous</button></li>'
+            for(let i=0;i<Datanum/10;i++){
+                if(i+1!=CurrentURL.searchParams.get('page')){
+                    Pagestr=Pagestr+`<li class="page-item"><a class="page-link" href="?page=${i+1}">${i+1}</a></li>`
+                }else{
+                    Pagestr=Pagestr+`<li class="page-item active"><a class="page-link" href="?page=${i+1}">${i+1}</a></li>`
+                }
+            }
+            Pagestr=Pagestr+'<li class="page-item" id="Next"><button class="page-link">Next</button></li>'
+            let Pageelement = document.getElementById("page");
+            Pageelement.innerHTML = Pagestr;
+
+            //
+            trry()
+            buttondisable()
+        }).catch((err) => {
+            console.log('錯誤:', err);
+        });
+        //
+        function trry(){
+        const test=document.querySelectorAll('.page-link')
+            test.forEach(function(item){
+                    item.addEventListener('click',function(event){
+                        //event.preventDefault()
+                        event.target.setAttribute('class', 'text-danger fs-1');
+                        console.log(event.target)
+                })
+            })
+        }
+
+        //
+        function buttondisable(){
+            let CurrentURL = new URL(window.location.href);
+            if(CurrentURL.searchParams.get('page')==1){
+                let element = document.getElementById("Previous");
+                element.classList.add("disabled");
+                //element.setAttribute('disabled', '');
+            }else if(CurrentURL.searchParams.get('page')==10){
+                element = document.getElementById("Next");
+                element.classList.add("disabled");
+            }
+        }
+    </script>
+</body>
+</html>
