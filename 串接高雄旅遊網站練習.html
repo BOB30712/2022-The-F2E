@@ -6,11 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
 
     <div class="container">
+        <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+            尋找最近的自行車停放站
+        </a>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            依條件篩選
+        </button>
+        <div class="offcanvas offcanvas-start w-50" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+            <div id="currentArea">
+                當前區域:全部
+            </div>
+            <div class="dropdown mt-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                更換區域
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><button class="dropdown-item" data-area="全部">顯示全部</button></li>
+                <li><button class="dropdown-item" data-area="桃園區">桃園區</button></li>
+                <li><button class="dropdown-item" data-area="中壢區">中壢區</button></li>
+                <li><button class="dropdown-item" data-area="平鎮區">平鎮區</button></li>
+                <li><button class="dropdown-item" data-area="龜山區">龜山區</button></li>
+                <li><button class="dropdown-item" data-area="大溪區">大溪區</button></li>
+                </ul>
+            </div>
+            </div>
+        </div>
         <table class="table">
         <thead>
             <tr>
@@ -32,7 +63,13 @@
 
     <script>
         let Datanum=0;
+        let pageParams=1;
+        let Area='全部';//桃園區、中壢區
+        linkAPI()
+        changeArea()
+
         //「桃園公共自行車即時服務資料」API讀取
+        function linkAPI(){
         fetch('https://data.tycg.gov.tw/api/v1/rest/datastore/a1b4714b-3b75-4ff8-a8f2-cc377e4eaa0f?format=json')
         .then((response) => {
             return response.json();
@@ -40,27 +77,22 @@
         .then(function (myJson) {
             console.log(myJson); //在這裡才能在 console 看到整個資料
             console.log(myJson.result.records);
-            //取得當前頁數
-            /*
-            page=1--->0~9
-            page=2--->10~19
-            page=3--->20~29
-            */
-            let CurrentURL = new URL(window.location.href);
-            console.log('目前頁數',CurrentURL.searchParams.get('page'))
-            //
+            let AllData=myJson.result.records
+            if(Area!='全部'){
+                AllData=myJson.result.records.filter(item => item.sarea == Area);
+            }
             str=''
-            myJson.result.records.forEach(function(item,index){
+            AllData.forEach(function(item,index){
                 Datanum++;
-                if(index>=(CurrentURL.searchParams.get('page')-1)*10&&
-                index<=CurrentURL.searchParams.get('page')*10-1){
+                if(index>=(pageParams-1)*10&&
+                index<=pageParams*10-1){
                     str=str+`<tr>
-                            <th scope="row">${index}</th>
-                            <td>${item.sna}</td>
-                            <td>${item.ar}</td>
-                            <td>${item.sbi}</td>
-                            <td>${item.tot}</td>
-                        </tr>`
+                        <th scope="row">${index}</th>
+                        <td>${item.sna}</td>
+                        <td>${item.ar}</td>
+                        <td>${item.sbi}</td>
+                        <td>${item.tot}</td>
+                    </tr>`
                 }
             })
             let element = document.getElementById("header");
@@ -70,23 +102,24 @@
             console.log('總資料數量',Datanum)
             let Pagestr='<li class="page-item" id="Previous"><button class="page-link">Previous</button></li>'
             for(let i=0;i<Datanum/10;i++){
-                if(i+1!=CurrentURL.searchParams.get('page')){
-                    Pagestr=Pagestr+`<li class="page-item"><a class="page-link" href="?page=${i+1}">${i+1}</a></li>`
+                if(i+1!=pageParams){
+                    Pagestr=Pagestr+`<li class="page-item"><button class="page-link">${i+1}</button ></li>`
                 }else{
-                    Pagestr=Pagestr+`<li class="page-item active"><a class="page-link" href="?page=${i+1}">${i+1}</a></li>`
+                    Pagestr=Pagestr+`<li class="page-item active"><button class="page-link">${i+1}</button ></li>`
                 }
             }
             Pagestr=Pagestr+'<li class="page-item" id="Next"><button class="page-link">Next</button></li>'
             let Pageelement = document.getElementById("page");
             Pageelement.innerHTML = Pagestr;
-
             //
-            trry()
-            buttondisable()
+            buttondisable(pageParams)
+            changePage()
+            Datanum=0
         }).catch((err) => {
             console.log('錯誤:', err);
         });
-        //
+        }
+        /*
         function trry(){
         const test=document.querySelectorAll('.page-link')
             test.forEach(function(item){
@@ -97,18 +130,41 @@
                 })
             })
         }
-
+        */
         //
-        function buttondisable(){
+        function buttondisable(pageParams){
             let CurrentURL = new URL(window.location.href);
-            if(CurrentURL.searchParams.get('page')==1){
+            if(pageParams==1){
                 let element = document.getElementById("Previous");
                 element.classList.add("disabled");
                 //element.setAttribute('disabled', '');
-            }else if(CurrentURL.searchParams.get('page')==10){
+            }else if(pageParams==Math.ceil(Datanum/10)){
                 element = document.getElementById("Next");
                 element.classList.add("disabled");
             }
+        }
+        //
+        function changePage(){
+           const pager= document.querySelectorAll('.page-link')
+           pager.forEach(function(item){
+            item.addEventListener('click',function(i){
+                pageParams=i.target.innerHTML
+                console.log(i.target.innerHTML)
+                linkAPI()
+            })
+           })
+        }
+        function changeArea(){
+            const areabutton=document.querySelectorAll('.dropdown-item')
+            areabutton.forEach(function(item){
+                item.addEventListener('click',function(i){
+                    console.log(i.target.dataset.area)
+                    Area=i.target.dataset.area
+                    const currentArea=document.querySelector('#currentArea')
+                    currentArea.innerHTML=`當前區域:${Area}`
+                    linkAPI()
+                })
+            })
         }
     </script>
 </body>
