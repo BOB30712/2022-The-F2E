@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+    integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+    crossorigin=""/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geosearch/3.7.0/geosearch.css" />
+    <title>桃園公共自行車</title>
+    <style>
+        #currentmap{
+        width: 400px;
+        height:  400px;
+        background: white;
+        border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+            尋找最近的自行車停放站
+        </a>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            依條件篩選
+        </button>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+            當前區域:全部
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><button class="dropdown-item" data-area="全部">顯示全部</button></li>
+        <li><button class="dropdown-item" data-area="桃園區">桃園區</button></li>
+        <li><button class="dropdown-item" data-area="中壢區">中壢區</button></li>
+        <li><button class="dropdown-item" data-area="平鎮區">平鎮區</button></li>
+        <li><button class="dropdown-item" data-area="龜山區">龜山區</button></li>
+        <li><button class="dropdown-item" data-area="大溪區">大溪區</button></li>
+        </ul>
+        <div class="offcanvas offcanvas-start w-50" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+            <div class="dropdown mt-3">
+                <div style="width: 100%;height: 500px;"  id=currentmap></div>
+            </div>
+            </div>
+        </div>
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">地名</th>
+            <th scope="col">位置</th>
+            <th scope="col">目前車輛數量</th>
+            <th scope="col">總停車格</th>
+            <th scope="col">前往該位置</th>
+            </tr>
+        </thead>
+        <tbody id="header">
+        </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center" id="page">
+            </ul>
+        </nav>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+    integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+    crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-geosearch@3.7.0/dist/geosearch.umd.js"></script>
+    <script>
+        let Datanum=0;
+        let pageParams=1;
+        let Area='全部';//桃園區、中壢區
+        linkAPI()
+        changeArea()
+        addtoMap()
+
+        //「桃園公共自行車即時服務資料」API讀取
+        function linkAPI(){
+        fetch('https://data.tycg.gov.tw/api/v1/rest/datastore/a1b4714b-3b75-4ff8-a8f2-cc377e4eaa0f?format=json')
+        .then((response) => {
+            return response.json();
+        })
+        .then(function (myJson) {
+            console.log(myJson); //在這裡才能在 console 看到整個資料
+            console.log(myJson.result.records);
+            let AllData=myJson.result.records
+            if(Area!='全部'){
+                AllData=myJson.result.records.filter(item => item.sarea == Area);
+            }
+            str=''
+            AllData.forEach(function(item,index){
+                Datanum++;
+                if(index>=(pageParams-1)*10&&
+                index<=pageParams*10-1){
+                    str=str+`<tr>
+                        <th scope="row">${index}</th>
+                        <td>${item.sna}</td>
+                        <td>${item.ar}</td>
+                        <td>${item.sbi}</td>
+                        <td>${item.tot}</td>
+                        <td><button type="button" data-item='["${item.sna}", "${item.lat}", "${item.lng}"]' class="btn btn-primary" id='map'>前往</button></td>
+                    </tr>`
+                }
+            })
+            let element = document.getElementById("header");
+            element.innerHTML = str;
+
+            //
+            console.log('總資料數量',Datanum)
+            let Pagestr='<li class="page-item" id="Previous"><button class="page-link">Previous</button></li>'
+            for(let i=0;i<Datanum/10;i++){
+                if(i+1!=pageParams){
+                    Pagestr=Pagestr+`<li class="page-item"><button class="page-link">${i+1}</button ></li>`
+                }else{
+                    Pagestr=Pagestr+`<li class="page-item active"><button class="page-link">${i+1}</button ></li>`
+                }
+            }
+            Pagestr=Pagestr+'<li class="page-item" id="Next"><button class="page-link">Next</button></li>'
+            let Pageelement = document.getElementById("page");
+            Pageelement.innerHTML = Pagestr;
+            //
+            buttondisable(pageParams)
+            changePage()
+            addtoMap()
+            Datanum=0
+        }).catch((err) => {
+            console.log('錯誤:', err);
+        });
+        }
+        /*
+        function trry(){
+        const test=document.querySelectorAll('.page-link')
+            test.forEach(function(item){
+                    item.addEventListener('click',function(event){
+                        //event.preventDefault()
+                        event.target.setAttribute('class', 'text-danger fs-1');
+                        console.log(event.target)
+                })
+            })
+        }
+        */
+        //
+        function buttondisable(pageParams){
+            let CurrentURL = new URL(window.location.href);
+            if(pageParams==1){
+                let element = document.getElementById("Previous");
+                element.classList.add("disabled");
+                //element.setAttribute('disabled', '');
+            }else if(pageParams==Math.ceil(Datanum/10)){
+                element = document.getElementById("Next");
+                element.classList.add("disabled");
+            }
+        }
+        //
+        function changePage(){
+           const pager= document.querySelectorAll('.page-link')
+           pager.forEach(function(item){
+            item.addEventListener('click',function(i){
+                pageParams=i.target.innerHTML
+                console.log(i.target.innerHTML)
+                linkAPI()
+            })
+           })
+        }
+        function changeArea(){
+            const areabutton=document.querySelectorAll('.dropdown-item')
+            areabutton.forEach(function(item){
+                item.addEventListener('click',function(i){
+                    console.log(i.target.dataset.area)
+                    Area=i.target.dataset.area
+                    const currentArea=document.querySelector('#dropdownMenuButton')
+                    currentArea.innerHTML=`當前區域:${Area}`
+                    linkAPI()
+                })
+            })
+        }
+        //
+        function addtoMap(){
+            const mapbutton=document.querySelectorAll('#map')
+            mapbutton.forEach(function(item){
+                item.addEventListener('click',function(event){
+                    //const text=document.querySelector('.modal-body')
+                    //text.innerHTML=`<div style="width: 500px;height: 500px;"  id=currentmap></div>`
+                    //alert(JSON.parse(event.target.dataset.item)[0])
+                    L.marker([JSON.parse(event.target.dataset.item)[1], JSON.parse(event.target.dataset.item)[2]]).addTo(map)
+                    .bindPopup(`<p>${JSON.parse(event.target.dataset.item)[0]}</p>`)
+                    .openPopup();
+                })
+            })
+        }
+
+        var map;
+        map = L.map('currentmap').setView([24.960815,121.212038], 20);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '<a href="https://www.openstreetmap.org/">OpenStreetMap</a> | <a href="https://noob.tw/openstreetmap/">Tutorial 教學</a>',
+            maxZoom: 18,
+        }).addTo(map);
+
+        //取得當前位置
+        /*
+        var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+        };
+
+        function success(pos) {
+        var crd = pos.coords;
+
+        console.log('Your current position is:');
+        console.log('Latitude : ' + crd.latitude);
+        console.log('Longitude: ' + crd.longitude);
+        console.log('More or less ' + crd.accuracy + ' meters.');
+        L.marker([crd.latitude,crd.longitude]).addTo(map)
+        .bindPopup(`<p>目前位置</p>`)
+        .openPopup();
+        };
+
+        function error(err) {
+        console.warn('ERROR(' + err.code + '): ' + err.message);
+        };
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
+        */
+        //輸入地址
+        const provider = new GeoSearch.OpenStreetMapProvider();
+        const search = new GeoSearch.GeoSearchControl({
+        provider:  new GeoSearch.OpenStreetMapProvider(),
+        style: 'bar',
+        searchLabel: '輸入地址',
+        });
+
+        map.addControl(search);   
+
+        //
+        // 跟使用者要位置
+        function successGPS(position) {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        center = [lat, lng];
+        L.marker(center).addTo(map)
+        .bindPopup(`<p>目前位置</p>`)
+        .openPopup();
+        // 接著寫確認了座標後要執行的事
+        };
+        function errorGPS() {
+        window.alert('無法判斷您的所在位置，無法使用此功能。預設地點將為 台北市動物園');
+        // 接著寫使用者「封鎖」位置資訊請求後要執行的事
+        }
+
+        if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(successGPS, errorGPS);
+        } else {
+        window.alert('您的裝置不具備GPS，無法使用此功能');
+        // 接著寫使用者裝置不支援位置資訊時要執行的事
+        }
+    </script>
+</body>
+</html>
