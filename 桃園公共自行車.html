@@ -44,6 +44,9 @@
         <button class="btn btn-secondary dropdown-toggle mt-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
             當前區域:全部
         </button>
+        <button class="btn btn-dark mt-3" type="button" id="find" data-bs-toggle="tooltip" data-bs-placement="bottom" title="顯示最近的10筆資料">
+            尋找最近自行車站
+       </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <li><button class="dropdown-item" data-area="全部">顯示全部</button></li>
         <li><button class="dropdown-item" data-area="桃園區">桃園區</button></li>
@@ -93,27 +96,35 @@
     crossorigin=""></script>
     <script src="https://unpkg.com/leaflet-geosearch@3.7.0/dist/geosearch.umd.js"></script>
     <script>
+        let AllData=null
         let Datanum=0;
         let pageParams=1;
         let Area='全部';//桃園區、中壢區
         linkAPI()
         changeArea()
         addtoMap()
+        localStorage.clear();
+
 
         //「桃園公共自行車即時服務資料」API讀取
-        function linkAPI(){
+        function linkAPI(inputData){
         fetch('https://data.tycg.gov.tw/api/v1/rest/datastore/a1b4714b-3b75-4ff8-a8f2-cc377e4eaa0f?format=json')
         .then((response) => {
             return response.json();
         })
         .then(function (myJson) {
-            console.log(myJson); //在這裡才能在 console 看到整個資料
-            console.log(myJson.result.records);
-            let AllData=myJson.result.records
+            AllData=myJson.result.records
             if(Area!='全部'){
                 AllData=myJson.result.records.filter(item => item.sarea == Area);
             }
+            if(inputData){
+                AllData=[]
+                inputData.forEach(function(item){
+                    AllData.push(item)
+                })
+            }
             str=''
+            if(!inputData){
             AllData.forEach(function(item,index){
                 Datanum++;
                 if(index>=(pageParams-1)*10&&
@@ -128,11 +139,25 @@
                     </tr>`
                 }
             })
+            }else{
+                AllData.forEach(function(item,index){
+                Datanum++;
+                if(index>=(pageParams-1)*10&&
+                index<=pageParams*10-1){
+                    str=str+`<tr>
+                        <th scope="row">${index}</th>
+                        <td>${item.event.sna}</td>
+                        <td>${item.event.ar}</td>
+                        <td class='text-center'>${item.event.sbi}</td>
+                        <td class='text-center'>${item.event.tot}</td>
+                        <td class='text-center'><button type="button" data-item='["${item.event.sna}", "${item.event.lat}", "${item.event.lng}"]' class="btn btn-primary" id='map'>標記</button></td>
+                    </tr>`
+                }
+                })
+            }
             let element = document.getElementById("header");
             element.innerHTML = str;
-
-            //
-            console.log('總資料數量',Datanum)
+            //console.log('總資料數量',Datanum)
             let Pagestr='<li class="page-item" id="Previous"><button class="page-link">Previous</button></li>'
             for(let i=0;i<Datanum/10;i++){
                 if(i+1!=pageParams){
@@ -165,7 +190,7 @@
                 element.classList.add("disabled");
             }
         }
-        //
+        //更換頁面
         function changePage(){
            const pager= document.querySelectorAll('.page-link')
            pager.forEach(function(item){
@@ -176,20 +201,18 @@
                     pageParams=pageParams+1
                 }else{
                     pageParams=i.target.innerHTML
-                    console.log(i.target.innerHTML)  
+                    //console.log(i.target.innerHTML)  
                 }
                 linkAPI()
             })
            })
         }
-        //
-
-        //
+        //修改顯示區域
         function changeArea(){
             const areabutton=document.querySelectorAll('.dropdown-item')
             areabutton.forEach(function(item){
                 item.addEventListener('click',function(i){
-                    console.log(i.target.dataset.area)
+                    //console.log(i.target.dataset.area)
                     Area=i.target.dataset.area
                     const currentArea=document.querySelector('#dropdownMenuButton')
                     currentArea.innerHTML=`當前區域:${Area}`
@@ -197,32 +220,48 @@
                 })
             })
         }
-        //
+        //修改icon圖示
         var bicycleIcon = L.icon({
             iconUrl: 'bicycle.svg',
             iconSize:     [38, 95], // size of the icon
             iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
         });
+
+        //將自行車站加入地圖
+        let successList=[]
         function addtoMap(){
             const mapbutton=document.querySelectorAll('#map')
             mapbutton.forEach(function(item){
                 item.addEventListener('click',function(event){
                     event.target.classList.add('add-success');
+                    successList.push(JSON.parse(event.target.dataset.item)[0])
+                    localStorage.setItem('myMap',JSON.stringify(successList));
                     L.marker([JSON.parse(event.target.dataset.item)[1], JSON.parse(event.target.dataset.item)[2]],{icon: bicycleIcon}).addTo(map)
                     .bindPopup(`<p>${JSON.parse(event.target.dataset.item)[0]}</p>`)
                     .openPopup();
                     successaddtoMap();
                 })
             })
+            if(localStorage.getItem('myMap')){
+                successaddtoMap() 
+            }
         }
 
+        //修改已加入地圖的狀態
         function successaddtoMap(){
-            const successbutton=document.querySelectorAll('.add-success')
-            successbutton.forEach(function(item){
-                item.innerHTML='已標記'
-                item.classList.remove('btn-primary');
-                item.classList.add('btn-danger');
+            const successarry=JSON.parse(localStorage.getItem('myMap'))
+            console.log(successarry)
+            successarry.forEach(function(item){
+                const successbutton=document.querySelectorAll('#map')
+                successbutton.forEach(function(i){
+                    if(item==JSON.parse(i.dataset.item)[0]){
+                        console.log(JSON.parse(i.dataset.item)[0])
+                        i.innerHTML='已標記'
+                        i.classList.remove('btn-primary');
+                        i.classList.add('btn-danger');
+                    }
+                })
             })
         }
 
@@ -241,11 +280,9 @@
         style: 'bar',
         searchLabel: '輸入地址',
         });
-
         map.addControl(search);   
 
-        //
-        // 跟使用者要位置
+        // 跟使用者要球位置
         function successGPS(position) {
         const lat = position.coords.latitude;
         const lng = position.coords.longitude;
@@ -270,6 +307,14 @@
         //刪除所有地圖上標記
         const claerbutton=document.querySelector('#clearAll')
         claerbutton.addEventListener('click',function(){
+            localStorage.clear();
+            successList=[]
+            const successbutton=document.querySelectorAll('#map')
+            successbutton.forEach(function(i){
+                i.innerHTML='標記'
+                i.classList.remove('btn-danger');
+                i.classList.add('btn-primary');
+            })
             /*
             map.eachLayer((layer) => {
                 layer.remove();
@@ -279,6 +324,49 @@
                 if(layer['_latlng']!=undefined)
                     layer.remove();
             });
+        })
+        //取得距離最近的前10個自行車站
+        let textarry=[]
+        const findbutton=document.querySelector('#find')
+        findbutton.addEventListener('click',function(){
+            AllData.forEach(function(item){
+                textarry.push(
+                    {
+                        distance: distance(item.lat, item.lng, center[0],center[1],'k'),
+                        event:item
+                    })
+                textarry=textarry.sort(function(a, b) {return a.distance - b.distance})
+                textarry=textarry.splice(0,10)
+            })
+            linkAPI(textarry)
+        })
+
+        function distance(lat1, lon1, lat2, lon2, unit) {
+            if ((lat1 == lat2) && (lon1 == lon2)) {
+                return 0;
+            }
+            else {
+                var radlat1 = Math.PI * lat1/180;
+                var radlat2 = Math.PI * lat2/180;
+                var theta = lon1-lon2;
+                var radtheta = Math.PI * theta/180;
+                var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+                if (dist > 1) {
+                    dist = 1;
+                }
+                dist = Math.acos(dist);
+                dist = dist * 180/Math.PI;
+                dist = dist * 60 * 1.1515;
+                if (unit=="K") { dist = dist * 1.609344 }
+                if (unit=="N") { dist = dist * 0.8684 }
+                return dist;
+            }
+        }
+
+        //使用Boostrap工具提示框
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
         })
     </script>
 </body>
