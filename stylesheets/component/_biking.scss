@@ -1,0 +1,26 @@
+.biking{
+    position: absolute;
+    top:70px;
+    right: 10px;
+    z-index: -10;
+}
+
+.biking>p>i{
+    font-size: 200px;
+    color:white;
+}
+
+
+@include media-breakpoint-up(lg) {
+    .biking{
+        position: absolute;
+        top:45%;
+        right: 70%;
+        z-index: -10;
+    }
+    .biking>p>i{
+        font-size: 500px;
+        transform:rotateY(180deg);
+        color:#008b8b;
+    }
+}
