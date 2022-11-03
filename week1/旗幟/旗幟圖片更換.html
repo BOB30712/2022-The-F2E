@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+    <style>
+        *{
+            outline: 0px solid black;
+            font-family: 'DotGothic16', sans-serif;
+        }
+        .background{
+            height: 1080px;
+        }
+    </style>
+</head>
+<body>
+    <section class="section">
+        <div class="background position-relative w-100">
+            <img class="position-absolute translate-middle" style="top:70%;left:52%;z-index:40;width: 207px;height: 83px;" src="image/戰車(側).gif" alt="F4">
+            <div class="first position-absolute translate-middle" style="top:5%;left:0%;z-index:40;"></div>
+            <div class="second position-absolute translate-middle" style="top:25%;left:0%;z-index:40;"></div>
+            <div class="third position-absolute translate-middle" style="top:70%;left:0%;z-index:40;"></div>
+            <div class="week1 position-absolute top-0 start-0  w-100 h-100" style="z-index: 30;">
+                <div class="h-100 position-relative" style="background-color:#B82A06;background-image:url(image/week1\ 1.png);background-repeat: no-repeat;overflow: hidden;">
+                    <p class="text-center" style="font-size: 52px;padding-top: 227px;color:#FFB3A4;">week1 </p>
+                    <p class="text-center" style="font-size: 72px;color: #FFFFFF;">The F2E 活動網站設計</p>
+                    <p class="text-center" style="font-size: 36px;color: #FFFFFF;">視差滾動</p>
+                    <p class="text-center" style="font-size: 36px;color: #FFFFFF;">#版塊設計</p>
+                    <img class="position-absolute" style="top:74%;right:-150%" src="image/Line 1.png" alt="Line">
+                    <img class="week1-F1 position-absolute translate-middle" style="top:65%;left:50%" src="image/F4.png" alt="F4">
+                    <button type="button" class="btn btn-light position-absolute translate-middle" style="font-size: 36px;color: #B82A06;left: 50%;top: 80%;">查看關卡細節</button>
+                </div>
+            </div>
+            <div class="week2 position-absolute top-0 start-0 w-100 h-100" style="z-index: 20;">
+                <div class="h-100 position-relative" style="background-color:#76B9D6;background-image:url(image/week2\ 1.png);background-repeat: no-repeat;">
+                    <p class="text-center" style="font-size: 52px;padding-top: 227px;color:#0061A1;">week2 </p>
+                    <p class="text-center" style="font-size: 72px;color: #FFFFFF;">今晚，我想來點點簽</p>
+                    <p class="text-center" style="font-size: 36px;color: #FFFFFF;">canvans</p>
+                    <p class="text-center" style="font-size: 36px;color: #FFFFFF;">#凱鈿行動科技</p>
+                    <img class="position-absolute" style="top:74%;right:0%" src="image/Line 1.png" alt="Line">
+                    <img class="week2-F1 position-absolute translate-middle" style="top:65%;left:50%" src="image/F1.png" alt="F4">
+                    <button type="button" class="btn btn-light position-absolute translate-middle" style="font-size: 36px;color: #B82A06;left: 50%;top: 80%;">查看關卡細節</button>
+                </div>
+            </div>
+            <div class="week3 position-absolute top-0 start-0 w-100 h-100" style="z-index: 10;">
+                <div class="h-100 position-relative" style="background-color:#215400;background-image:url(image/week3\ 1.png);background-repeat: no-repeat;">
+                    <p class="text-center" style="font-size: 52px;padding-top: 227px;color:#C7FFA3;">week3 </p>
+                    <p class="text-center" style="font-size: 72px;color: #FFFFFF;">Scrum 新手村</p>
+                    <p class="text-center" style="font-size: 36px;color: #FFFFFF;">JS draggable</p>
+                    <p class="text-center" style="font-size: 36px;color: #FFFFFF;">#鈦坦科技</p>
+                    <img class="position-absolute" style="top:74%;right:50%" src="image/Line 1.png" alt="Line">
+                    <img class="week3-F1 position-absolute translate-middle" style="top:65%;left:50%" src="image/F1.png" alt="F4">
+                    <button type="button" class="btn btn-light position-absolute translate-middle" style="font-size: 36px;color: #B82A06;left: 50%;top: 80%;">查看關卡細節</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/TextPlugin.min.js"></script>
+    <script>
+        //
+        const sroll = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".section", 
+            pin: true, //重要！ pin需設為true
+            //markers: true,
+            scrub: true,
+        },
+        });
+        sroll.to(".week1", { xPercent: "-100" });
+        sroll.to(".week2", { xPercent: "-100" });
+
+        //坦克車離開旗幟時，旗幟下降
+        const week1 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".first", 
+            //markers: true,
+            scrub: true,
+            start: 'top 5%', // 決定動畫開始點的位置
+            end: 'top 5%', // 決定動畫結束點的位置
+            onEnter:function(){
+                lowertheflag("week1-F1")
+            },
+            onEnterBack:function(){
+                Raisingflag("week1-F1")
+            }
+        },
+        });
+        //滾動到week2旗幟升起，坦克離開時，旗幟降下
+        const week2 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".second", 
+            //markers: true,
+            scrub: true,
+            start: 'top 15%', // 決定動畫開始點的位置
+            end: 'top -30%', // 決定動畫結束點的位置
+            onEnter:function(){//進入start觸發
+                Raisingflag("week2-F1")
+            },
+            onEnterBack:function(){//返回end後觸發
+                Raisingflag("week2-F1")
+            },
+            onLeave:function(){//離開end觸發
+                lowertheflag("week2-F1")
+            },
+            onLeaveBack:function(){//離開start後返為觸發
+                gsap.set(".week2-F1", { attr: { src: "image/F1.png"},delay:0.2 });
+            }
+        },
+        });
+        //滾動到week3旗幟升起
+        const week3 = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".third", 
+            //markers: true,
+            scrub: true,
+            start: 'top 5%', // 決定動畫開始點的位置
+            end: 'top 5%', // 決定動畫結束點的位置
+            onEnter:function(){
+                Raisingflag("week3-F1")
+            },
+            onEnterBack:function(){
+                lowertheflag("week3-F1")
+            }
+        },
+        });
+
+        function Raisingflag(str){
+            gsap.set(`.${str}`, { attr: { src: "image/F2.png"},delay:0.2 });
+            gsap.set(`.${str}`, { attr: { src: "image/F3.png"},delay:0.4 });
+            gsap.set(`.${str}`, { attr: { src: "image/F4.png"},delay:0.6 });
+        }
+
+        function lowertheflag(str){
+            gsap.set(`.${str}`, { attr: { src: "image/F4.png"},delay:0.2 });
+            gsap.set(`.${str}`, { attr: { src: "image/F3.png"},delay:0.4 });
+            gsap.set(`.${str}`, { attr: { src: "image/F2.png"},delay:0.6 });
+            gsap.set(`.${str}`, { attr: { src: "image/F1.png"},delay:0.8 });
+        }
+    </script>
+</body>
+</html>
