@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <style>
+        *{
+            font-family: 'DotGothic16', sans-serif;
+            outline: 1px solid black;
+        }
+        .btn.active,
+        .btn:active {
+            color: #B82A06;
+            background-color: #3C0C00;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <nav class="py-5 d-flex justify-content-center">
+            <button type="button" class="btn mx-3 px-5" style="font-size:36px;color: #B82A06;">常見問題</button>
+            <button type="button" class="btn mx-3 px-5" style="font-size:36px;color: #B82A06;">UI設計師</button>
+            <button type="button" class="btn mx-3 px-5" style="font-size:36px;color: #B82A06;">前端工程師</button>
+            <button type="button" class="btn mx-3 px-5 active" style="font-size:36px;color: #B82A06;">團體組</button>
+        </nav>
+        <!--常見問題-->
+        <div class="container mb-5" style="font-size: 24px;">
+            <p>Q：如果某一週不小心挑戰失敗，是否能再繼續挑戰後面關卡？</p>
+            <p>A：可以，儘管那週挑戰失敗，之後您仍可以挑選喜歡的關卡進行挑戰，並在該關卡期限內繳交作品。</p>
+
+            <p>Q：大家都好強，我怕我做的東西沒有達到過關門檻，不敢登錄作品</p>
+            <p>A：這個活動並非競爭性質，每個參賽者都是你的隊友，最大的敵人是你自己，因為你必須定期練功前端開發，讓自己能夠順利完賽。</p>
+
+            <p>Q：我不確定自己做的版型有沒有符合過關門檻，要寫到什麼程度才有到過關門檻？</p>
+            <p>A：主辦單位其實不會去審核大家的程式碼，只要你認為當週你有針對主題有做到一定程度，就算是半完成品也請大方投稿，不用擔心。</p>
+
+            <p>Q：我已經寫到一半了，但時間快來不及，可以先投稿嗎？</p>
+            <p>A：可以，有投稿表示你還會持續努力在這次活動上。</p>
+        </div>
+        <!--UI設計師-->
+        <div class="container mb-5" style="font-size: 24px;">
+            <p>Q:到時投稿到平台是提供甚麼呢?我也不像是工程師可以有CODEPEN上傳</p>
+            <p>A：其中投稿的欄位裡面會有一個「線上標示文件」，像是 Adobe XD 便有提供該服務(範例連結)，屆時提供標示文件後，便可讓其他前端工程師採用你的設計稿來開發。</p>
+            
+            <p>Q:投稿上去的UI作品，我知道需要授權讓前端工程師組成Web介面，那授權部分可以設定嗎</p>
+            <p>A：會有的，屆時平台投稿流程上，會讓您的作品可以選擇 CC0、CC BY 等授權，以保障您的 UI 作品權益。</p>
+            
+            <p>Q:一定要上傳 線上標示文件 嗎?</p>
+            <p></p>
+
+            <p>Q:不能使用PS、illustrator設計嗎?</p>
+            <p></p>
+
+            <p>Q:當每周一題目出來後，我有一些設計進度也可以投稿嗎?</p>
+            <p></p>
+        </div>
+        <!--前端工程師-->
+        <!--團體組-->
+    </section>
+
+    <div style="height:500px;"></div>
+    <div id="one" class="fs-1">第一行</div>
+    <div id="two" class="fs-1">第二行</div>
+    <div id="three" class="fs-1">第三行</div>
+    <div id="four" class="fs-1">第四行</div>
+    <button id="btn1" type="button" class="btn btn-primary fs-2">Primary1</button>
+    <button id="btn2" type="button" class="btn btn-primary fs-2">Primary2</button>
+    <button id="btn3" type="button" class="btn btn-primary fs-2">Primary3</button>
+    <button id="btn4" type="button" class="btn btn-primary fs-2">Primary4</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/TextPlugin.min.js"></script>
+    <script>
+        const btn=document.querySelector("#btn1")
+        btn.addEventListener("click",function(){
+            const row=document.querySelectorAll(".fs-1")
+            row.forEach(function(e){
+                console.log(e)
+                e.classList.add("d-none");
+                const one=document.querySelector("#one")
+                one.classList.add("d-block");
+                one.classList.remove("d-none");
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <style>
+        *{
+            font-family: 'DotGothic16', sans-serif;
+            outline: 0px solid black;
+        }
+    </style>
+</head>
+<body>
+    <section class="pb-5 bg-black title">
+        <nav style="background-color:#B82A06;">
+            <ul class="list-unstyled container d-flex justify-content-end">
+                <li class="p-3 text-nowrap align-middle"><img src="image/THE F2E (1).png" alt=""></li>
+                <li class="p-3 text-nowrap align-middle">關卡資訊</li>
+                <li class="p-3 text-nowrap align-middle">攻略資源</li>
+                <li class="p-3 text-nowrap align-text-bottom">求職專區</li>
+                <li class="p-2 text-nowrap"><button type="button" class="d-block btn btn-light" style="color:#B82A06;border-radius:0px;">註冊報名</button></li>
+                <li class="p-2 text-nowrap"><button type="button" class="btn btn-light" style="color:#B82A06;border-radius:0px;">登入</button></li>
+            </ul>
+        </nav>
+        <div class="container d-flex justify-content-around bg-black">
+            <div class="text-white" style="font-size:36px;">1- 00</div>
+            <div class="text-white" style="font-size:36px;">H1- 99</div>
+            <div class="text-white" style="font-size:36px;">Hex School</div>
+        </div>
+        <div class="d-flex justify-content-center mb-5">
+            <img src="image/banner_LOGO 1.png" alt="">
+        </div>
+        <div class="d-flex justify-content-center">
+            <ul class="list-unstyled">
+                <li class="py-2 longin" style="font-size:42px;color:#B82A06;">
+                    <img class="longintank" style="opacity:1;" src="image/戰車(俯) 1.png" alt="">
+                    1 LOG IN
+                </li>
+                <li class="py-2 signup" style="font-size:42px;color:white;">
+                    <img class="signuptank" style="opacity:0;" src="image/戰車(俯) 1.png" alt="">
+                    2 SIGN UP
+                </li>
+            </ul>
+        </div>
+        <div class="d-flex justify-content-center">
+            <p class="text-white" style="font-size:36px;">Interactive And Responsive Web Design.</p>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/TextPlugin.min.js"></script>
+    <script>
+        gsap.fromTo(".title",{y:1000},{y:0,duration:10})
+        const body=document.body
+        body.addEventListener("keydown",function(e){
+            //console.log(e.keyCode)
+            if(e.keyCode==38){//login
+                gsap.to('.longintank',{opacity:1})
+                gsap.to('.signuptank',{opacity:0})
+                gsap.to('.longin',{color:"#B82A06"})
+                gsap.to('.signup',{color:"white"})
+            }else if(e.keyCode==40){//singup
+                gsap.to('.longintank',{opacity:0})
+                gsap.to('.signuptank',{opacity:1})
+                gsap.to('.longin',{color:"white"})
+                gsap.to('.signup',{color:"#B82A06"})
+            }
+        })
+    </script>
+</body>
+</html>
