@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week1-活動網站設計</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="all.css">
+</head>
+<body>
+    <!--標題-->
+    <section class="pb-5 bg-black">
+        <nav class="d-none d-lg-block" style="background-color:#B82A06;">
+            <ul class="list-unstyled container d-flex justify-content-end">
+                <li class="p-3 text-nowrap align-middle"><img src="image/THE F2E (1).png" alt=""></li>
+                <li class="p-3 text-nowrap align-middle"><a class="text-black" href="https://2022.thef2e.com/news"style="text-decoration:none;">關卡資訊</a></li>
+                <li class="p-3 text-nowrap align-middle"><a class="text-black" href="https://hackmd.io/ofJD4K7iSI65V19zxC7d0w"style="text-decoration:none;">攻略資源</a></li>
+                <li class="p-3 text-nowrap align-text-bottom"><a class="text-black" href="https://2022.thef2e.com/jobs"style="text-decoration:none;">求職專區</a></li>
+                <li class="p-2 text-nowrap"><button type="button" class="d-block btn btn-light" style="color:#B82A06;border-radius:0px;">註冊報名</button></li>
+                <li class="p-2 text-nowrap"><button type="button" class="btn btn-light" style="color:#B82A06;border-radius:0px;">登入</button></li>
+            </ul>
+        </nav>
+        <nav class="navbar navbar-expand-lg navbar-light d-lg-none" style="background-color:#B82A06;">
+            <div class="container">
+                <a class="ms-auto" href="#"><img src="image/THE F2E (1).png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">關卡資訊</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">攻略資源</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">註冊報名</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="d-block btn btn-light my-3 mx-3 my-lg-0" style="color:#B82A06;border-radius:0px;">註冊報名</button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-light my-3 mx-3 my-lg-0" style="color:#B82A06;border-radius:0px;">登入</button>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="title">
+            <div class="container d-flex justify-content-around bg-black title-score">
+                <div class="text-white">1- 00</div>
+                <div class="text-white">H1- 99</div>
+                <div class="text-white">Hex School</div>
+            </div>
+            <div class="d-flex justify-content-center mb-5">
+                <img class="d-none d-lg-block" src="image/banner_LOGO 1.png" alt="">
+                <img class="d-block d-lg-none img-fluid" src="image/banner_LOGO_sm.png" alt="">
+            </div>
+            <div class="d-flex justify-content-center">
+                <ul class="list-unstyled">
+                    <li class="py-2 longin" style="font-size:42px;color:#B82A06;">
+                        <img class="longintank" style="opacity:1;" src="image/戰車(俯) 1.png" alt="">
+                        1 LOG IN
+                    </li>
+                    <li class="py-2 signup" style="font-size:42px;color:white;">
+                        <img class="signuptank" style="opacity:0;" src="image/戰車(俯) 1.png" alt="">
+                        2 SIGN UP
+                    </li>
+                </ul>
+            </div>
+            <div class="d-flex justify-content-center">
+                <p class="text-white title-score">Interactive And Responsive Web Design.</p>
+            </div>
+        </div>
+    </section>
+
+    <!--疑惑pc-->
+    <section class="d-none d-lg-block" style="overflow:hidden;background-color: black;">
+        <div>
+            <div class="mt-5 animation typing-1 from-left position-relative" style="width: 980px;height: 570px;background-color:#B82A06;">
+                <img class="web position-absolute translate-middle" style="top:50%;left:50%;" src="image/web 1.png" alt="">
+                <div class="position-absolute translate-middle" style="top:55%;left:50%;width: 637px;overflow: hidden;">
+                    <img class="animationtank"  src="image/戰車(側) 2.png" alt="">
+                </div>
+                <div class="position-absolute translate-middle d-flex  align-items-end" style="top:5%;left:80%;width:391px;height:118px; ;" >
+                    <img class="tank-dialog" style="width: 30%;height: 30%;opacity: 0;" src="image/戰車對話框.png" alt="">
+                </div>
+                <div class="position-absolute" style="bottom:92%;right:10%;">
+                    <p class="typing6" style="white-space: nowrap;font-size: 36px;font-weight: 900;color: black;">stay cool</p>
+                </div>
+                <div class="position-absolute" style="bottom:50%;right:-20%;">
+                    <p class="typing1" style="white-space: nowrap;font-size: 36px;font-weight: bold;color: white;"></p>
+                </div>
+            </div>
+        </div>
+        <div class="test d-flex justify-content-end" style="margin:243px 0px;">
+            <div class="animation typing-2 from-right position-relative" style="width: 980px;height: 570px;background-color:#B82A06;">
+                <img class="tree position-absolute" style="bottom:-120%;right:-100%;" src="image/XMLID_1_.png" alt="tree">
+                <div class="position-absolute d-flex justify-content-end align-items-end" style="top:-10%;right:70%;width:341px;height:195px;">
+                    <img class="dialog" style="width: 30%;height: 30%;opacity: 0;" src="image/士兵_對話框.png" alt="">
+                </div>
+                <div class="position-absolute" style="bottom:88%;right:80%;">
+                    <p class="typing5" style="white-space: nowrap;font-size: 36px;font-weight: 900;color: black;"></p>
+                </div>
+                <div class="position-absolute" style="bottom:40%;right:80%;">
+                    <p class="typing2" style="white-space: nowrap;font-size: 36px;font-weight: 900;color: white;"></p>
+                </div>
+                <div class="position-absolute" style="bottom:-100%;right:0%;width: 980px;height: 570px;z-index: 20;background-color: black;"> </div>
+            </div>
+        </div>
+        <div>
+            <div class="animation typing-3 from-left position-relative" style="width: 980px;height: 570px;background-color:#B82A06;z-index: 30;">
+                <img class="tree2 position-absolute" style="bottom:-120%;right:0%;" src="image/tree 2.png" alt="tree">
+                <img class="soldier position-absolute" style="bottom:-100%;right:30%;" src="image/soldier 2.png" alt="soldier">
+                <div class="position-absolute" style="bottom:20%;right:-25%;">
+                    <p class="typing3" style="white-space: nowrap;font-size: 36px;font-weight: bold;-webkit-text-stroke: -2px #3C0C00;color: white;"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--疑惑moblie-->
+    <section class="d-lg-none d-block py-5 bg-black">
+        <div>
+            <div class="typing-1 p-5 mb-5 position-relative" style="background-color:#B82A06;">
+                <img class="web img-fluid" src="image/web 1.png" alt="">
+                <img class="position-absolute" src="image/戰車(側).gif" alt="" style="bottom:25%;right:25%;;width:50%;height:40%;">
+            </div>
+            <p class="text-white text-center envy"></p>
+            <div class="typing-1 p-5 position-relative">
+                <img class="web img-fluid position-relative ms-5" style="z-index: 10;" src="image/XMLID_1_.png" alt="">
+                <img class="position-absolute start-0" style="z-index:15;bottom:60%;width:30%;height:20%;" src="image/士兵_對話框.png" alt="">
+                <p class="position-absolute text-black envyTalk" style="top:25%;left:5%;z-index: 15;"></p>
+                <div class="position-absolute start-0 w-100" style="bottom: 13%;height:65%;background-color:#B82A06;"></div>
+            </div>
+            <p class="text-white text-center notSatisfied"></p>
+            <div class="typing-1 p-5 position-relative" style="overflow: hidden;">
+                <img class="web img-fluid position-relative" style="z-index: 10;" src="image/tree 2.png" alt="">
+                <img class="web position-absolute solider" style="bottom:13%;right:40%;z-index: 12;width: 30%;height: 30%;" src="image/soldier 2.png" alt="">
+                <div class="position-absolute start-0 w-100" style="bottom: 13%;height:65%;background-color:#B82A06;"></div>
+            </div>
+            <p class="text-white text-center stunned"></p>
+        </div>
+    </section>
+
+    <!--希望之光-->
+    <section class="section-hope d-none d-lg-block">
+    <div class="position-relative background" style="height: 1000px;background-color: #000000;overflow: hidden;">
+        <div class="title position-absolute translate-middle" style="top:80%;left: 50%;">
+            <div class="title2 d-flex justify-content-center align-items-center" style="width: 789px;height: 140px;border:4px solid #FFB3A4">
+                <p style="font-size: 72px;color: #FFB3A4;;">互動式網頁設計</p>
+            </div>
+            <p class="text-center title3" style="font-size:24px;opacity: 0;">UI、前端接力合作，一同產出完整作品。</p>
+        </div>
+        <img  class="L1 position-absolute bottom-0 end-0"  src="image/L1.png" alt="">
+        <img  class="L2 position-absolute bottom-0 end-0" src="image/L2.png" alt="">
+        <img  class="L3 position-absolute bottom-0 start-0" src="image/L3.png" alt="">
+        <img  class="L4 position-absolute bottom-0 start-50 translate-middle-x" src="image/L4.png" alt="">
+        <img  class="L5 position-absolute bottom-0 start-50 translate-middle-x" src="image/L5.png" alt="">
+    </div>
+    </section>
+
+    <!--希望之光moblie-->
+    <section class="d-lg-none d-block bg-white">
+        <div class="d-flex flex-column justify-content-end position-relative hope-bg" style="height: 800px;background-color: #000000;">
+            <div class="position-absolute translate-middle" style="top:30%;left: 50%;">
+                <div class="d-flex justify-content-center align-items-center" style="border:4px solid #000000">
+                    <p class="text-nowrap mb-0" style="font-size: 36px;color:black;">互動式網頁設計</p>
+                </div>
+                <p class="text-center" style="font-size:15px;opacity: 1;">UI、前端接力合作，產出完整作品。</p>
+            </div>
+            <img class="position-absolute hope-L1" style="bottom:25%;right:0%; width: 100%;height: 20%;" src="image/L1.png" alt="">
+            <img class="position-absolute hope-L2" style="bottom:25%;right:0%;z-index: 20; width: 100%;height: 20%;" src="image/L2.png" alt="">
+            <img class="position-absolute hope-L3" style="bottom:25%;right:0%;z-index: 20; width: 100%;height: 20%;" src="image/L3.png" alt="">
+            <img class="position-absolute" style="bottom:20%;right:0%;z-index: 20; width: 100%;height: 20%;" src="image/L5.png" alt="">
+            <img class="img-fluid position-relative" style="z-index: 30;" src="image/L4.png" alt="">
+            <div class="w-100 bg-black position-relative" style="height:200px;z-index: 30;"></div>
+        </div>
+    </section>
+    
+
+    <!--活動主題說明-->
+    <section class="section-title d-none d-lg-block">
+        <div class="background position-relative w-100">
+            <img class="position-absolute translate-middle" style="top:70%;left:52%;z-index:40;width: 207px;height: 83px;" src="image/戰車(側).gif" alt="F4">
+            <div class="first position-absolute translate-middle" style="top:5%;left:0%;z-index:40;"></div>
+            <div class="second position-absolute translate-middle" style="top:25%;left:0%;z-index:40;"></div>
+            <div class="third position-absolute translate-middle" style="top:70%;left:0%;z-index:40;"></div>
+            <div class="week1 position-absolute top-0 start-0  w-100 h-100" style="z-index: 30;">
+                <div class="h-100 position-relative" style="background-color:#B82A06;background-image:url(image/week1\ 1.png);background-repeat: no-repeat;overflow: hidden;">
+                    <p class="text-center" style="font-size: 52px;padding-top: 227px;color:#FFB3A4;">week1 </p>
+                    <p class="text-center" style="font-size: 72px;color: #FFFFFF;">The F2E 活動網站設計</p>
+                    <p class="text-center" style="font-size: 36px;color: #FFFFFF;">視差滾動</p>
+                    <p class="text-center" style="font-size: 36px;color: #FFFFFF;">#版塊設計</p>
+                    <img class="position-absolute" style="top:74%;right:-150%" src="image/Line 1.png" alt="Line">
+                    <img class="week1-F1 position-absolute translate-middle" style="top:65%;left:50%" src="image/F4.png" alt="F4">
+                    <form action="https://2022.thef2e.com/news/week1">
+                        <button type="submit" class="btn btn-light position-absolute translate-middle" style="font-size: 36px;color: #B82A06;left: 50%;top: 80%;">查看關卡細節</button>
+                    </form>
+                </div>
+            </div>
+            <div class="week2 position-absolute top-0 start-0 w-100 h-100" style="z-index: 20;">
+                <div class="h-100 position-relative" style="background-color:#76B9D6;background-image:url(image/week2\ 1.png);background-repeat: no-repeat;">
+                    <p class="text-center" style="font-size: 52px;padding-top: 227px;color:#0061A1;">week2 </p>
+                    <p class="text-center" style="font-size: 72px;color: #FFFFFF;">今晚，我想來點點簽</p>
+                    <p class="text-center" style="font-size: 36px;color: #FFFFFF;">canvans</p>
+                    <p class="text-center" style="font-size: 36px;color: #FFFFFF;">#凱鈿行動科技</p>
+                    <img class="position-absolute" style="top:74%;right:0%" src="image/Line 1.png" alt="Line">
+                    <img class="week2-F1 position-absolute translate-middle" style="top:65%;left:50%" src="image/F1.png" alt="F4">
+                    <form action="https://2022.thef2e.com/news/week2">
+                        <button type="submit" class="btn btn-light position-absolute translate-middle" style="font-size: 36px;color: #B82A06;left: 50%;top: 80%;">查看關卡細節</button>
+                    </form>
+                </div>
+            </div>
+            <div class="week3 position-absolute top-0 start-0 w-100 h-100" style="z-index: 10;">
+                <div class="h-100 position-relative" style="background-color:#215400;background-image:url(image/week3\ 1.png);background-repeat: no-repeat;">
+                    <p class="text-center" style="font-size: 52px;padding-top: 227px;color:#C7FFA3;">week3 </p>
+                    <p class="text-center" style="font-size: 72px;color: #FFFFFF;">Scrum 新手村</p>
+                    <p class="text-center" style="font-size: 36px;color: #FFFFFF;">JS draggable</p>
+                    <p class="text-center" style="font-size: 36px;color: #FFFFFF;">#鈦坦科技</p>
+                    <img class="position-absolute" style="top:74%;right:50%" src="image/Line 1.png" alt="Line">
+                    <img class="week3-F1 position-absolute translate-middle" style="top:65%;left:50%" src="image/F1.png" alt="F4">
+                    <form action="https://2022.thef2e.com/news/week3">
+                        <button type="submit" class="btn btn-light position-absolute translate-middle" style="font-size: 36px;color: #B82A06;left: 50%;top: 80%;">查看關卡細節</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--活動主題說明moblie-->
+    <section class="d-lg-none d-block">
+        <div class="position-relative" style="background-image:url(image/week1\ 1.png);background-color:#B82A06;background-size:contain;background-position: center center;height:800px;width: 100%;background-repeat: no-repeat;">
+            <div class="text-center" style="padding:100px 0px 0px 0px;">
+                <p style="font-size:20px;color:#FFB3A4;">week1</p>
+                <p style="font-size:24px;color:#FFFFFF;margin-bottom: 50px;">The F2E 活動網站設計</p>
+                <p style="font-size:20px;color:#FFFFFF;">視差滾動</p>
+                <p style="font-size:20px;color:#FFFFFF;">#版塊設計</p>
+            </div>
+            <div class="d-flex justify-content-center position-relative">
+                <img class="week1-F" src="image/F4.png" alt="">
+                <img class="position-absolute end-50 week1-tank" style="left:-80%;bottom: 10%;height:40%;width:40%;" src="image/戰車(側).gif" alt="">
+            </div>
+        </div>
+        <div class="position-relative" style="background-image:url(image/week2\ 1.png);background-color:#76B9D6;background-size:contain;background-position: center center;height:800px;width: 100%;background-repeat: no-repeat;">
+            <div class="text-center" style="padding:100px 0px 0px 0px;">
+                <p style="font-size:20px;color:#0061A1;">week2</p>
+                <p style="font-size:24px;color:#FFFFFF;margin-bottom: 50px;">今晚，我想來點點簽</p>
+                <p style="font-size:20px;color:#FFFFFF;">canvans</p>
+                <p style="font-size:20px;color:#FFFFFF;">#凱鈿行動科技</p>
+            </div>
+        </div>
+        <div class="position-relative" style="background-image:url(image/week3\ 1.png);background-color: #215400;background-size:contain;background-position: center center;height:800px;width: 100%;background-repeat: no-repeat;">
+            <div class="text-center" style="padding:100px 0px 0px 0px;">
+                <p style="font-size:20px;color:#C7FFA3;">week3</p>
+                <p style="font-size:24px;color:#FFFFFF;margin-bottom: 50px;">Scrum 新手村</p>
+                <p style="font-size:20px;color:#FFFFFF;">JS draggable</p>
+                <p style="font-size:20px;color:#FFFFFF;">#鈦坦科技</p>
+            </div>
+        </div>
+    </section>
+
+    <!--報名流程-->
+    <section class="bg-black d-none d-lg-block">
+        <ul class="list-unstyled container py-5 mb-0">
+            <li style="padding: 150px 0px;">
+                <div class="d-flex">
+                    <img class="sign-up-banner img-fluid" src="image/F1.png" alt="" id="Sig-Up">
+                    <div  class="ps-5 Proc d-flex flex-column justify-content-between" id="SingupProc">
+                        <p class="ProcTitle" style="font-size:72px;color:#FFB3A4;"></p>
+                        <p class="mb-0" style="font-size:24px;color:white;">開放報名：<br>10/13(四) 早上 11:00 - 11/6(日) 晚上 23:59<br>截止前可修改報名組別。</p>
+                    </div>
+                    <div class="d-flex Proc flex-column justify-content-end ms-auto me-auto" id="SingupProc">
+                        <form action="https://2022.thef2e.com/login">
+                            <button type="submit" class="btn btn-light" style="font-size:36px;border-radius:0px;color:#B82A06">點我註冊報名!</button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+            <li style="padding: 150px 0px;">
+                <div class="d-flex">
+                    <img class="sign-up-banner" src="image/F1.png" alt="" id="START">
+                    <div class="ps-5 d-flex Proc flex-column justify-content-between" id="StartProc">
+                        <p class="ProcTitle" style="font-size:72px;color:#FFB3A4;"></p>
+                        <p class="mb-0" style="font-size:24px;color:white;">各組別開賽：<br>UI組、團體組開賽 10/31、前端組開賽 11/7</p>
+                    </div>
+                </div>
+            </li>
+            <li style="padding: 150px 0px;">
+                <div class="d-flex">
+                    <img class="sign-up-banner" src="image/F1.png" alt="" id="UPLOAD">
+                    <div class="ps-5 d-flex Proc flex-column justify-content-between" id="UploadProc">
+                        <p class="ProcTitle" style="font-size:72px;color:#FFB3A4;"></p>
+                        <p class="mb-0" style="font-size:24px;color:white;">登陸作品：<br>10/31(一) 中午 12:00 - 11/28(一) 中午 12:00</p>
+                    </div>
+                </div>
+            </li>
+            <li style="padding: 150px 0px;">
+                <div class="d-flex">
+                    <img class="sign-up-banner" src="image/F1.png" alt="" id="STREAM">
+                    <div class="ps-5 d-flex Proc flex-column justify-content-between" id="StreamProc">
+                        <p class="ProcTitle" style="font-size:72px;color:#FFB3A4;"></p>
+                        <p class="mb-0" style="font-size:24px;color:white;">資深開發者到來 ，直播分享零阻礙！<br>線上直播： 11/3 - 11/24（每週四）</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <!--常見問題-->
+    <section class="bg-black">
+        <div class="py-4 d-flex justify-content-center" style="background-color:#B82A06;">
+            <p id="currentQA" class="text-white mb-0 NormalQA">常見問題</p>
+        </div>
+        <nav class="d-flex justify-content-lg-center justify-content-around my-5 flex-wrap ">
+            <button type="button" id="QAnormal" class="border-0 qa btn btn-light m-3 px-2 active" style="color: #B82A06;">常見問題</button>
+            <button type="button" id="QAUI" class="border-0 qa btn btn-light m-3 px-2" style="color: #B82A06;">UI設計師</button>
+            <button type="button" id="QAFontEnd" class="border-0 qa btn btn-light m-3 px-2" style="color: #B82A06;">前端工程師</button>
+            <button type="button" id="QATeam" class="border-0 qa btn btn-light m-3 px-2" style="color: #B82A06;">團體組</button>
+        </nav>
+        <!--常見問題-->
+        <div id="QAnormal" class="QA container mb-5 " style="font-size: 24px;">
+            <p class="Question">Q：如果某一週不小心挑戰失敗，是否能再繼續挑戰後面關卡？</p>
+            <p class="Answer">A：可以，儘管那週挑戰失敗，之後您仍可以挑選喜歡的關卡進行挑戰，並在該關卡期限內繳交作品。</p>
+
+            <p class="Question">Q：大家都好強，我怕我做的東西沒有達到過關門檻，不敢登錄作品</p>
+            <p class="Answer">A：這個活動並非競爭性質，每個參賽者都是你的隊友，最大的敵人是你自己，因為你必須定期練功前端開發，讓自己能夠順利完賽。</p>
+
+            <p class="Question">Q：我不確定自己做的版型有沒有符合過關門檻，要寫到什麼程度才有到過關門檻？</p>
+            <p class="Answer">A：主辦單位其實不會去審核大家的程式碼，只要你認為當週你有針對主題有做到一定程度，就算是半完成品也請大方投稿，不用擔心。</p>
+
+            <p class="Question">Q：我已經寫到一半了，但時間快來不及，可以先投稿嗎？</p>
+            <p class="Answer">A：可以，有投稿表示你還會持續努力在這次活動上。</p>
+        </div>
+        <!--UI設計師-->
+        <div id="QAUI" class="QA container mb-5 d-none" style="font-size: 24px;">
+            <p class="Question">Q:到時投稿到平台是提供甚麼呢?我也不像是工程師可以有CODEPEN上傳</p>
+            <p class="Answer">A：其中投稿的欄位裡面會有一個「線上標示文件」，像是 Adobe XD 便有提供該服務(範例連結)，屆時提供標示文件後，便可讓其他前端工程師採用你的設計稿來開發。</p>
+            
+            <p class="Question">Q:投稿上去的UI作品，我知道需要授權讓前端工程師組成Web介面，那授權部分可以設定嗎</p>
+            <p class="Answer">A：會有的，屆時平台投稿流程上，會讓您的作品可以選擇 CC0、CC BY 等授權，以保障您的 UI 作品權益。</p>
+            
+            <p class="Question">Q:一定要上傳 線上標示文件 嗎?</p>
+            <p class="Answer">A:是的，因為這樣才有辦法讓其他前端工程師，能採用您的設計稿，將您的設計稿實作出網頁格式。如果您是使用Sketch，也可以使用Sketch Measure編譯出來後，壓縮ZIP到雲端空間(Drobox、Google Drive)。</p>
+
+            <p class="Question">Q:不能使用PS、illustrator設計嗎?</p>
+            <p class="Answer">A:只要您能找到PS或illustrator產出現上標示文件的方式就可以，因為前端工程師大部分皆比較少具有繪圖軟體，所以用線上標示文件將會減少許工程師協作上的溝通時間。</p>
+
+            <p class="Question">Q:當每周一題目出來後，我有一些設計進度也可以投稿嗎?</p>
+            <p class="Answer">A:可以，團隊在協作過程中，一定也會先出些進度提供前端切版，有進度時您也可以先投稿，讓前端工程師可以先接手，之後在透過FB社團來溝通進度即可。</p>
+        </div>
+        <!--前端工程師-->
+        <div id="QAFontEnd" class="QA container mb-5 d-none" style="font-size: 24px;">
+            <p class="Question">Q:我可以不依照設計稿，自己作版面嗎?因為我想多練習JS/後端</p>
+            <p class="Answer">A:可以，The F2E活動是希望讓大家人人有功練，所以依照你自己想投入的方向練功即可。CSS也可以用框架，例如Bootstrap</p>
+            
+            <p class="Question">Q:前端介面一定要長的一模一樣嗎?</p>
+            <p class="Answer">A:不用，依照自己的想法來開發也可以</p>
+            
+            <p class="Question">Q:有現成的網頁靜態頁面嗎?我想只練習JS/後端就好</p>
+            <p class="Answer">A:這段我們不會提供，畢竟每個人習慣的Codeing Style又不一樣，產出的HTML、CSS並非是自己習慣的Layout反而會更花時間。</p>
+
+            <p class="Question">Q:那我只想要練習JS，HTML/CSS我用陽春版，不依照設計稿開發可以嗎?</p>
+            <p class="Answer">A:可以，你可以當做我們就是出一個主題，你依照那主題當作參考方向來開發即可。</p>
+        </div>
+        <!--團體組-->
+        <div id="QATeam" class="QA container mb-5 d-none" style="font-size: 24px;">
+            <p class="Question">Q:請問團體組最多幾人?</p>
+            <p class="Answer">A:最多4人，投稿作品時請派一位組長來投稿即可。</p>
+            
+            <p class="Question">Q:我對獎項有興趣，可以只做第三道主題就好嗎?</p>
+            <p class="Answer">A:可以，您可以在這場活動中，和組員一起打磨第三道主題，不用三個主題都做。</p>
+            
+            <p class="Question">Q:那團體組第三道主題最晚投稿期限為?</p>
+            <p class="Answer">A:團體組投稿第三週UI最晚投稿時間為11/21(一)中午12點，前端最晚投稿期限為11/28(一)中午12點。</p>
+
+            <p class="Question">Q:我們團體組比較想做手機APP，可以投稿並符合評審門檻嗎?</p>
+            <p class="Answer">A:您可以開發手機APP，若有在期限前投稿也能獲得數位獎狀。但評審門檻僅限Web瀏覽器應用開發，Android、iOSAPP則不在評審範圍內，故不符合評審門檻。</p>
+            
+            <p class="Question">Q:請問除了前端開發、UI設計外，還能做其他加值應用嗎?例如後端動態應用整合?</p>
+            <p class="Answer">A:可以的，只要能透過網頁瀏覽器操控您的服務，並有使用到TDX API的任何一個API，您可以依照本次主題 全台公車動態時刻查詢應用服務 做最大的加值整合應用，甚至搭配後端應用，整合多個外部API也是可以的。</p>
+
+            <p class="Question">Q:團體組的UI設計稿，可以讓"個人組-前端工程師"組別採用嗎?</p>
+            <p class="Answer">A:不能，預設是不能讓"個人組-前端工程師"採用。</p>
+        </div>
+        <form action="https://2022.thef2e.com/login">
+            <div class="QAsigupPadding">
+                <button type="submit" class="QAsigup w-100 border-0 btn-light  mx-lg-3 px-lg-5 my-5">立即註冊報名</button>
+            </div>
+        </form>
+    </section>
+
+    <!--贊助商-->
+    <section>
+    <div class="loop" style="background-color: #B82A06;position: relative;overflow:hidden;width:100%;">
+        <h2 class="Sponsor text-center text-white text-nowrap"><span style="color:#FFC612;">鑽石級</span>贊助商</h2>
+        <ul class="list-unstyled row row-cols-lg-3 row-cols-1 g-3">
+            <li class="col d-flex justify-content-center">
+                <div class="position-relative bg-white" style="height: 374px;width: 374px;">
+                    <div>
+                        <img class="position-absolute top-50 start-50 translate-middle" style="z-index: 10;" src="image/logo/blockstudio_logo.png" alt="">
+                    </div>
+                </div>
+            </li>
+            <li class="col d-flex justify-content-center">
+                <div class="position-relative bg-white" style="height: 374px;width: 374px;">
+                    <div>
+                        <img class="position-absolute top-50 start-50 translate-middle" style="z-index: 5;" src="image/logo/titan_logo.png" alt="">
+                    </div>
+                </div>
+            </li>
+            <li class="col d-flex justify-content-center">
+                <div class="position-relative bg-white" style="height: 374px;width: 374px;">
+                    <div>
+                        <img class="position-absolute top-50 start-50 translate-middle" style="z-index: 10;" src="image/logo/kdan_logo.png" alt="">
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <h2 class="Sponsor text-center text-white">共同推廣</h2>
+        <ul class="list-unstyled row row-cols-lg-3 row-cols-1 g-3">
+            <li class="col d-flex justify-content-center">
+                <div class="position-relative bg-white" style="height: 374px;width: 374px;">
+                    <div>
+                        <img class="position-absolute top-50 start-50 translate-middle" style="z-index: 25;" src="image/logo/Vector.png" alt="">
+                    </div>
+                </div>
+            </li>
+            <li class="col d-flex justify-content-center">
+                <div class="d-flex justify-content-center align-items-center bg-white" style="height: 374px;width: 374px;">
+                </div>
+            </li>
+            <li class="col d-flex justify-content-center">
+                <div class="position-relative bg-white" style="height: 374px;width: 374px;">
+                    <div>
+                        <img class="position-absolute top-50 start-50 translate-middle" style="z-index: 5;"  src="image/logo/dottedSign 1.png" alt="">
+                    </div>
+                </div>
+            </li>
+        </ul>
+        
+        <img class="big" style="position:absolute;top: 300px;left:-50%;z-index: 20;" src="image/大鑽石.png" alt="大鑽石">
+        <!--鑽石群組-->
+        <img class="big3" style="position:absolute;top: 400px;left:60%;z-index: 20;" src="image/大鑽石.png" alt="大鑽石">
+        <img class="big4" style="position:absolute;top: 400px;left:-70%;z-index: 20;" src="image/大鑽石.png" alt="大鑽石">
+        <!--鑽石群組-->
+        <img class="big" style="position:absolute;top: 550px;left:30%;z-index: 20;" src="image/大鑽石.png" alt="大鑽石">
+        <img class="big2" style="position:absolute;top: 550px;left:-100%;z-index: 20;" src="image/大鑽石.png" alt="大鑽石">
+
+        <img class="middle" style="position:absolute;top: 200px;left:-50%;z-index: 5;" src="image/中鑽石.png" alt="中鑽石">
+        <img class="middle" style="position:absolute;top: 80%;left:-70%;z-index: 5;" src="image/中鑽石.png" alt="中鑽石">
+        <img class="middle" style="position:absolute;top: 60%;left:-20%;z-index: 5;" src="image/中鑽石.png" alt="中鑽石">
+
+        <img class="small" style="position:absolute;top: 140px;left:-50%;z-index: 10;" src="image/小鑽石.png" alt="小鑽石">
+        <img class="small" style="position:absolute;top: 10%;left:-10%;z-index: 10;" src="image/小鑽石.png" alt="小鑽石">
+        <img class="small" style="position:absolute;top: 95%;left:-25%;z-index: 10;" src="image/小鑽石.png" alt="小鑽石">
+
+        <!--鑽石群組-->
+        <img class="small-2a" style="position:absolute;top: 68%;left:20%;z-index: 100;" src="image/小鑽石.png" alt="小鑽石">
+        <img class="small-2b" style="position:absolute;top: 68%;left:-100%;z-index: 100;" src="image/小鑽石.png" alt="小鑽石">
+        <!--鑽石群組-->
+        <img class="small-3a" style="position:absolute;top: 48%;left:50%;z-index: 100;" src="image/小鑽石.png" alt="小鑽石">
+        <img class="small-3b" style="position:absolute;top: 48%;left:-50%;z-index: 100;" src="image/小鑽石.png" alt="小鑽石">
+        <!--鑽石群組-->
+        <img class="small-4a" style="position:absolute;top: 15%;left:70%;z-index: 100;" src="image/小鑽石.png" alt="小鑽石">
+        <img class="small-4b" style="position:absolute;top: 15%;left:0%;z-index: 100;" src="image/小鑽石.png" alt="小鑽石">
+    </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/TextPlugin.min.js"></script>
+    <script src="all.js"></script>
+</body>
+</html>

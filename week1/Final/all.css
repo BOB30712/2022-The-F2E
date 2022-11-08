@@ -1,0 +1,89 @@
+*{
+    font-family: 'DotGothic16', sans-serif;
+    outline: 1px solid black;
+}
+.btn.active,
+.btn:active {
+    color: #B82A06;
+    background-color: #3C0C00;
+}
+.Question{
+    color:#FFB3A4;;
+}
+.Answer{
+    color:#FFFFFF;
+}
+.QAsigup{
+    color: #B82A06;
+}
+.QAsigup:hover{
+    color: #FFFFFF;
+    background-color: #B82A06;
+}
+
+.background{
+    height: 1080px;
+}
+
+.btn.active,
+.btn:active {
+    color: #B82A06;
+    background-color: #3C0C00;
+}
+.Question{
+    color:#FFB3A4;;
+}
+.Answer{
+    color:#FFFFFF;
+}
+.QAsigup{
+    color: #B82A06;
+}
+.QAsigup:hover{
+    color: #FFFFFF;
+    background-color: #B82A06;
+}
+
+.qa{
+    font-size:36px;
+}
+
+.QAsigup{
+    font-size:72px;
+}
+.QAsigupPadding{
+    padding:0px 25%;
+}
+.Sponsor{
+    font-size: 74px;
+}
+.NormalQA{
+    font-size:56px;
+}
+.title-score{
+    font-size:36px;
+}
+
+@media screen and (max-width:800px) {
+   p{
+        font-size: 24px;
+    }
+    .qa{
+        font-size:20px;
+    }
+    .QAsigup{
+        font-size:36px;
+    }
+    .QAsigupPadding{
+        padding:0px 5%;
+    }
+    .Sponsor{
+        font-size: 36px;
+    }
+    .NormalQA{
+        font-size:24px;
+    }
+    .title-score{
+        font-size:24px;
+    }
+}
