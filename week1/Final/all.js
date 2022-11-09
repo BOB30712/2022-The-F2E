@@ -373,7 +373,7 @@ gsap.fromTo('.hope-L1',{bottom:'25%'},{
     }
 )
 gsap.fromTo('.hope-L2',{bottom:'25%'},{
-    bottom:'0%',
+    bottom:'15%',
     duration:4,
     scrollTrigger:{
         trigger:'.hope-L1',
@@ -382,7 +382,7 @@ gsap.fromTo('.hope-L2',{bottom:'25%'},{
     }
 )
 gsap.fromTo('.hope-L3',{bottom:'25%'},{
-    bottom:'0%',
+    bottom:'15%',
     duration:6,
     scrollTrigger:{
         trigger:'.hope-L1',
@@ -390,22 +390,81 @@ gsap.fromTo('.hope-L3',{bottom:'25%'},{
     }
     }
 )
-gsap.fromTo('.week1-tank',{left:'-80%'},{
-    left:'40%',
-    duration:6,
-    scrollTrigger:{
-        trigger:'.week1-tank',
-        toggleActions:'play pause resume reset'
+
+//手機板每周主題說明
+gsap.utils.toArray(".moblie-week").forEach((element)=>{
+    gsap.fromTo(`.${element.id}-tank`,{left:'-80%'},{
+        left:'40%',
+        duration:2,
+        scrollTrigger:{
+            trigger:`.${element.id}-tank`,
+            toggleActions:'play pause resume reset'
+        }
+        }
+    )
+    gsap.fromTo(`.${element.id}-F`,{opacity:0},{
+        opacity:1,
+        delay:2.2,
+        scrollTrigger:{
+            trigger:`.${element.id}-F`,
+            toggleActions:'play pause resume reset'
+        }
+        }
+    )
+    gsap.fromTo(`#${element.id}-btn`,{opacity:0},{
+        opacity:1,
+        delay:2.2,
+        scrollTrigger:{
+            trigger:`.${element.id}-F`,
+            toggleActions:'play pause resume reset'
+        }
+        }
+    )
+
+})
+
+//手機板流程說明
+gsap.utils.toArray(".Proc-moblie").forEach((element)=>{
+    gsap.fromTo(`#${element.id}`,{xPercent:150},{
+        xPercent:0,
+        duration:2,
+        scrollTrigger:{
+            trigger:`#${element.id}`,
+            toggleActions:'play pause resume reset'
+        }
+        }
+    )
+    let movein=''
+    let Proctitle=''
+    switch (element.id) {
+        case 'SIGNUP-moblie':
+            movein='SIGNUP-moblie-title'
+            Proctitle='Sig Up!'
+            break;
+        case 'START-moblie':
+            movein='START-moblie-title'
+            Proctitle='START!'
+            break;
+        case 'UPLOAD-moblie':
+            movein='UPLOAD-moblie-title'
+            Proctitle='UPLOAD!'
+            break;
+        case 'STREAM-moblie':
+            movein='STREAM-moblie-title'
+            Proctitle='STREAM!'
+            break;
     }
-    }
-)
-const testmoblie = gsap.timeline({
-    scrollTrigger:{
-        trigger:'.week1-F',
-    }
-});
-//gsap.set(`.${str}`, { attr: { src: "image/F2.png"},delay:0.2 });
-testmoblie.to('.week1-F', { attr: { src: "image/F2.png"},delay:0.2 });
+    gsap.fromTo(`#${movein}`,{text:' '},{
+        text:Proctitle,
+        delay:2.2,
+        scrollTrigger:{
+            trigger:`#${element.id}`,
+            toggleActions:'play pause resume reset'
+        }
+        }
+    )
+})
+
 
 
 

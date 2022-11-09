@@ -242,9 +242,15 @@
                 <p style="font-size:20px;color:#FFFFFF;">視差滾動</p>
                 <p style="font-size:20px;color:#FFFFFF;">#版塊設計</p>
             </div>
-            <div class="d-flex justify-content-center position-relative">
+            <div id="week1" class="moblie-week d-flex justify-content-center position-relative">
                 <img class="week1-F" src="image/F4.png" alt="">
+                <img class="position-absolute top-50 start-50 translate-middle" src="image/F1.png" alt="">
                 <img class="position-absolute end-50 week1-tank" style="left:-80%;bottom: 10%;height:40%;width:40%;" src="image/戰車(側).gif" alt="">
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <form action="https://2022.thef2e.com/news/week1">
+                    <button id="week1-btn" type="submit" class="px-3 py-1 border-0" style="letter-spacing:3px;color:#B82A06;">查看關卡細節</button>
+                </form>
             </div>
         </div>
         <div class="position-relative" style="background-image:url(image/week2\ 1.png);background-color:#76B9D6;background-size:contain;background-position: center center;height:800px;width: 100%;background-repeat: no-repeat;">
@@ -254,6 +260,16 @@
                 <p style="font-size:20px;color:#FFFFFF;">canvans</p>
                 <p style="font-size:20px;color:#FFFFFF;">#凱鈿行動科技</p>
             </div>
+            <div id="week2" class="moblie-week d-flex justify-content-center position-relative">
+                <img class="week2-F" src="image/F4.png" alt="">
+                <img class="position-absolute top-50 start-50 translate-middle" src="image/F1.png" alt="">
+                <img class="position-absolute end-50 week2-tank" style="left:-80%;bottom: 10%;height:40%;width:40%;" src="image/戰車(側).gif" alt="">
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <form action="https://2022.thef2e.com/news/week2">
+                    <button id="week2-btn" type="submit" class="px-3 py-1 border-0" style="letter-spacing:3px;color:#B82A06;">查看關卡細節</button>
+                </form>
+            </div>
         </div>
         <div class="position-relative" style="background-image:url(image/week3\ 1.png);background-color: #215400;background-size:contain;background-position: center center;height:800px;width: 100%;background-repeat: no-repeat;">
             <div class="text-center" style="padding:100px 0px 0px 0px;">
@@ -261,6 +277,16 @@
                 <p style="font-size:24px;color:#FFFFFF;margin-bottom: 50px;">Scrum 新手村</p>
                 <p style="font-size:20px;color:#FFFFFF;">JS draggable</p>
                 <p style="font-size:20px;color:#FFFFFF;">#鈦坦科技</p>
+            </div>
+            <div id="week3" class="moblie-week d-flex justify-content-center position-relative">
+                <img class="week3-F" src="image/F4.png" alt="">
+                <img class="position-absolute top-50 start-50 translate-middle" src="image/F1.png" alt="">
+                <img class="position-absolute end-50 week3-tank" style="left:-80%;bottom: 10%;height:40%;width:40%;" src="image/戰車(側).gif" alt="">
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <form action="https://2022.thef2e.com/news/week2">
+                    <button id="week3-btn" type="submit" class="px-3 py-1 border-0" style="letter-spacing:3px;color:#B82A06;">查看關卡細節</button>
+                </form>
             </div>
         </div>
     </section>
@@ -310,6 +336,53 @@
                 </div>
             </li>
         </ul>
+    </section>
+
+    <!--報名流程moblie-->
+    <section class="d-block d-lg-none bg-black">
+        <div class="position-relative" style="padding:100px 0px;height:1224px;">
+            <ul class="w-100 d-flex flex-column justify-content-between list-unstyled position-absolute translate-middle" style="height: 1024px;left: 50%;top: 50%;background-image:url(image/Line\ 2.png);background-size:auto;background-repeat: no-repeat;background-position:18% 20%;">
+                <li>
+                    <div class="d-flex align-items-end" style="overflow:hidden">
+                        <img style="height: 30%;width: 30%;" src="image/F4.png" alt="">
+                        <div id="SIGNUP-moblie" class="ms-2 w-100 Proc-moblie">
+                            <p id="SIGNUP-moblie-title" class="moblietest text-nowrap mb-0" style="color:#FFB3A4;font-size:36px;">SIGN UP!</p>
+                            <p class="text-nowrap text-white mb-0" style="font-size:16px;">開放報名：<br>10/13(四) 早上 11:00<br>11/6(日) 晚上 23:59<br>截止前可修改報名組別。</p>
+                            <form action="https://2022.thef2e.com/login">
+                                <button style="color:#B82A06;" class="w-50 border-0">點我註冊報名</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="d-flex align-items-end" style="overflow:hidden">
+                        <img style="height: 30%;width: 30%;" src="image/F4.png" alt="">
+                        <div id="START-moblie" class="ms-2 w-100 Proc-moblie">
+                            <p id="START-moblie-title" class="text-nowrap" style="color:#FFB3A4;font-size:36px;">START!</p>
+                            <p class="text-nowrap text-white" style="font-size:16px;">各組別開賽：<br>UI組、團體組開賽 10/31<br>前端組開賽 11/7</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="d-flex align-items-end" style="overflow:hidden">
+                        <img style="height: 30%;width: 30%;" src="image/F4.png" alt="">
+                        <div id="UPLOAD-moblie" class="ms-2 w-100 Proc-moblie">
+                            <p id="UPLOAD-moblie-title" class="ProcTitle-moblie text-nowrap" style="color:#FFB3A4;font-size:36px;">UPLOAD!</p>
+                            <p class="text-nowrap text-white" style="font-size:16px;">登陸作品：<br>10/31(一) 中午 12:00<br>11/28(一) 中午 12:00</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="d-flex align-items-end" style="overflow:hidden">
+                        <img style="height: 30%;width: 30%;" src="image/F4.png" alt="">
+                        <div id="STREAM-moblie" class="ms-2 w-100 Proc-moblie">
+                            <p id="STREAM-moblie-title" class="text-nowrap" style="color: #FFB3A4;font-size: 36px;">STREAM!</p>
+                            <p class="text-nowrap text-white" style="font-size:16px;">資深開發者到來，<br>直播分享零阻礙！<br>線上直播：<br> 11/3 - 11/24（每週四）</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </section>
 
     <!--常見問題-->

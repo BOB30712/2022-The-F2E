@@ -1,6 +1,6 @@
 *{
     font-family: 'DotGothic16', sans-serif;
-    outline: 1px solid black;
+    outline: 0px solid black;
 }
 .btn.active,
 .btn:active {
