@@ -106,7 +106,7 @@ export default{
             canvas.requestRenderAll();
             const pdfData = await this.printPDF(e.dataTransfer.files[0],1);
             this.testData = e.dataTransfer.files[0]
-            this.filesize = e.target.files[0].size/1048576
+            //this.filesize = e.target.files[0].size/1048576
             this.page=1
             const pdfImage = await this.pdfToImage(pdfData);
             // 調整canvas大小

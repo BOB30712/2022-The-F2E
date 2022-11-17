@@ -19,6 +19,21 @@ const routes = [
     path: '/PDF',
     name: 'PDF',
     component: () => import('../views/PdfPractice.vue')
+  },
+  {
+    path: '/PdfView',
+    name: 'PdfView',
+    component: () => import('../views/PdfView.vue')
+  },
+  {
+    path: '/PdfView2',
+    name: 'PdfView2',
+    component: () => import('../views/PdfView2.vue')
+  },
+  {
+    path: '/DrawView',
+    name: 'DrawView',
+    component: () => import('../views/DrawView.vue')
   }
 ]
 
