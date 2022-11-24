@@ -19,6 +19,21 @@ const routes = [
     path: '/Draggable',
     name: 'Draggable',
     component: () => import('../views/DraggableView.vue')
+  },
+  {
+    path: '/OpeningView',
+    name: 'OpeningView',
+    component: () => import('../views/OpeningView.vue')
+  },
+  {
+    path: '/CastingView',
+    name: 'CastingView',
+    component: () => import('../views/CastingView.vue')
+  },
+  {
+    path: '/SmalltestView',
+    name: 'SmalltestView',
+    component: () => import('../views/SmalltestView.vue')
   }
 ]
 
